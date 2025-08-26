@@ -19,7 +19,7 @@ This project simulates an A/B experiment on the Instacart Market Basket Analysis
 - **Window:** 28 days post-assignment.  
 - **Metrics:**  
   - Primary: Repeat Purchase Rate (RPR).  
-  - Secondary: ARPU (Average Revenue per User), Retention (D14, D28).  
+  - Secondary: ARPU (Average Revenue per User), Retention Day 14 (early signal).  
 - **Guardrails:**  
   - SRM check (expected 50/50 split).  
   - Contamination check (no users in both variants).  
@@ -34,7 +34,7 @@ This project simulates an A/B experiment on the Instacart Market Basket Analysis
 3. **Per-User Outcomes:**  
    - Conversion flag (≥1 repeat order).  
    - Revenue in window.  
-   - Retention (activity by D14/D28).  
+   - Retention (activity by D14).  
 4. **Aggregates:** Variant-level metrics (CR, ARPU, Retention).  
 5. **Significance:** z-tests for proportions (CR), Welch’s t-test for ARPU.
 
@@ -51,8 +51,14 @@ This project simulates an A/B experiment on the Instacart Market Basket Analysis
 
 ---
 
-## ✅ Results
+## Results
 
-**Decision:** Ship Variant B (better CR, retention; revenue impact needs more data).  
+We ran an A/B test with approximately 206,000 users. At 28 days, conversion was 40.8 percent in both control and treatment (z = –0.04). With a z-score close to zero, there is no evidence of a treatment effect.
+
+Early retention at 14 days was 32.25 percent in control versus 32.19 percent in treatment (–0.06pp, z = –0.28). This difference is not statistically significant.
+
+ARPU averaged 9.83 items per user in control and 9.82 in treatment (t = –0.20). The groups are statistically indistinguishable on this metric.
+
+**Conclusion:** The simulated recommendation engine shows no measurable impact on conversion, retention, or ARPU. This outcome is expected because the dataset was randomly split without applying a real treatment effect.  
 
 ---
